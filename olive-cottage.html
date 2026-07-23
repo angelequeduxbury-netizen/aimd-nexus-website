@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<!--
+  Olive Cottage Guest House — Dan Pienaar, Bloemfontein, Free State
+  --------------------------------------------------------------------
+  This is a PITCH / DEMO site built from publicly available information
+  (Facebook page, directory listings, review aggregates). It is not yet
+  connected to Olive Cottage's actual room inventory, rates, or photos —
+  everything marked with [ ] brackets is a placeholder to confirm with
+  the owner once they engage, the same way the rest of this file is
+  structured to make that swap easy.
+
+  REAL DETAILS ALREADY WIRED IN (from the brief):
+    - Cell: 082 886 6578  -> used for WhatsApp + Call links
+    - Tel:  051 436 1781  -> used as the landline contact
+    - Address: Dan Pienaar, Bloemfontein, Free State, 9301
+    - Rating: ~4.5/5 from 10+ online reviews (used in the social proof badge)
+
+  STILL NEEDED FROM THE OWNER:
+    - Exact street address (map currently searches the suburb generally)
+    - Real room names/photos/rates
+    - Facebook page URL (search "facebook-link" below — appears twice)
+    - Actual guest review quotes to replace the placeholder ones
+    - Check-in/out times and other FAQ specifics
+
+  PHOTOS: search for "gallery-tile" and "leaf-frame" — drop an <img> as
+  the first child of either and the placeholder colour falls away.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olive Cottage Guest House — Dan Pienaar, Bloemfontein</title>
+<meta name="description" content="Olive Cottage Guest House — quiet, comfortable, privately-run accommodation in Dan Pienaar, Bloemfontein. En-suite rooms, secure parking, WhatsApp booking.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --linen: #F5F1E4;
+    --paper: #FCFAF2;
+    --ink: #2B2A1E;
+    --ink-soft: #5E5A47;
+    --ink-faint: #8D8870;
+    --olive: #4B5A33;
+    --olive-deep: #37421F;
+    --olive-light: #93A56C;
+    --olive-pale: #E3E7D6;
+    --mustard: #C08A2E;
+    --mustard-deep: #96691E;
+    --night: #23241A;
+    --night-soft: #30321F;
+    --line: rgba(43,42,30,0.15);
+    --radius: 3px;
+    --max: 1180px;
+    --shadow: 0 18px 40px -22px rgba(30,28,15,0.35);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0; background: var(--linen); color: var(--ink);
+    font-family: 'Karla', -apple-system, sans-serif;
+    font-weight:400; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:600; line-height:1.1; margin:0 0 0.4em; color: var(--ink);
+  }
+  p{ margin:0 0 1em; color: var(--ink-soft); }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: var(--max); margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+    color: var(--mustard-deep); font-weight:700; margin-bottom:14px;
+  }
+  .eyebrow svg{ width:22px; height:14px; flex-shrink:0; color: var(--olive); }
+
+  /* ---------- olive branch signature motif ---------- */
+  .branch-mark{ display:inline-block; }
+  .branch-mark *{ vector-effect: non-scaling-stroke; }
+
+  .branch-divider{
+    display:flex; align-items:center; justify-content:center; gap:16px;
+    width:100%; margin: 0 auto;
+  }
+  .branch-divider .rule{ height:1px; flex:1; background: linear-gradient(90deg, transparent, var(--line) 25%, var(--line) 75%, transparent); }
+  .branch-divider svg{ width:60px; height:22px; color: var(--olive-light); flex-shrink:0; }
+
+  /* ---------- leaf-shaped frame (signature #2) ---------- */
+  .leaf-frame{
+    border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+    overflow:hidden; position:relative;
+  }
+  .leaf-frame img{ width:100%; height:100%; object-fit:cover; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding: 13px 24px; font-size:0.86rem; font-weight:600; letter-spacing:0.02em;
+    text-decoration:none; border-radius: var(--radius); border:1px solid transparent;
+    cursor:pointer; transition: transform .22s ease, background .22s ease, color .22s ease, border-color .22s ease;
+  }
+  .btn svg{ width:16px; height:16px; }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--olive); color: var(--paper); }
+  .btn-primary:hover{ background: var(--olive-deep); }
+  .btn-wa{ background:#25D366; color:#fff; }
+  .btn-wa:hover{ background:#1DA851; }
+  .btn-ghost{ background:transparent; color: var(--paper); border-color: rgba(252,250,242,0.45); }
+  .btn-ghost:hover{ background: rgba(252,250,242,0.1); border-color: var(--paper); }
+  .btn-line{ background:transparent; color: var(--olive); border-color: var(--olive); }
+  .btn-line:hover{ background: var(--olive); color: var(--paper); }
+  a.btn:focus-visible, button:focus-visible, a:focus-visible{ outline:2px solid var(--mustard); outline-offset:3px; }
+
+  /* ---------- social proof ---------- */
+  .proof-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background: rgba(252,250,242,0.09); border:1px solid rgba(252,250,242,0.22);
+    padding:9px 16px; border-radius:999px; font-size:0.82rem; color: rgba(252,250,242,0.92);
+    margin-bottom:22px;
+  }
+  .proof-badge .stars{ color: var(--mustard); letter-spacing:1px; }
+  .proof-badge strong{ color: var(--paper); }
+  .proof-badge.light{ background: rgba(43,42,30,0.05); border-color: var(--line); color: var(--ink-soft); }
+  .proof-badge.light strong{ color: var(--ink); }
+  .proof-badge.light .stars{ color: var(--mustard-deep); }
+
+  /* ---------- header/nav ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background: rgba(35,36,26,0.94); backdrop-filter: blur(6px);
+    border-bottom:1px solid rgba(192,138,46,0.25);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:15px 28px; max-width:var(--max); margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color: var(--paper); }
+  .brand .branch-mark{ width:44px; height:26px; color: var(--mustard); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+  .brand-text strong{ font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; }
+  .brand-text span{ font-size:0.63rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--olive-light); }
+  nav.links{ display:flex; align-items:center; gap:26px; }
+  nav.links a{ color: rgba(252,250,242,0.82); text-decoration:none; font-size:0.85rem; font-weight:500; position:relative; padding:4px 0; }
+  nav.links a::after{ content:''; position:absolute; left:0; bottom:0; height:1px; width:0; background: var(--mustard); transition:width .25s ease; }
+  nav.links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:16px; }
+  .menu-toggle{ display:none; background:none; border:none; color:var(--paper); cursor:pointer; padding:6px; width:40px; height:40px; align-items:center; justify-content:center; }
+  .menu-toggle svg{ width:22px; height:22px; }
+
+  @media (max-width:940px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0;
+      background: var(--night); border-bottom:1px solid rgba(192,138,46,0.25);
+      max-height:0; overflow:hidden; transition:max-height .3s ease;
+    }
+    nav.links.open{ max-height:460px; }
+    nav.links a{ padding:15px 28px; width:100%; border-top:1px solid rgba(255,255,255,0.06); }
+    .nav-cta .btn-ghost{ display:none; }
+    .menu-toggle{ display:flex; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    background: radial-gradient(130% 140% at 10% 0%, #363821 0%, var(--night) 55%, #171812 100%);
+    color: var(--paper); overflow:hidden; padding: 96px 0 70px;
+  }
+  .hero::before{
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(192,138,46,0.14) 1px, transparent 1px);
+    background-size:28px 28px; opacity:0.55; pointer-events:none;
+  }
+  .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.05fr 0.95fr; gap:52px; align-items:center; }
+  .hero-copy{ max-width:600px; }
+  .hero h1{ font-size:clamp(2.3rem, 4.6vw, 3.6rem); color:var(--paper); font-weight:600; letter-spacing:-0.01em; }
+  .hero h1 em{ font-style:italic; color: var(--olive-light); font-weight:500; }
+  .hero .lede{ color: rgba(252,250,242,0.78); font-size:1.05rem; max-width:520px; margin-bottom:26px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:38px; }
+  .hero-facts{ display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(252,250,242,0.16); padding-top:20px; }
+  .hero-facts div{ padding:0 16px; border-left:1px solid rgba(252,250,242,0.14); }
+  .hero-facts div:first-child{ border-left:none; padding-left:0; }
+  .hero-facts .lbl{ font-size:0.74rem; color: rgba(252,250,242,0.62); }
+  .hero-facts svg{ width:20px; height:20px; color: var(--mustard); margin-bottom:6px; }
+
+  .hero-visual{ position:relative; }
+  .hero-visual .leaf-frame{
+    aspect-ratio:4/5; background: linear-gradient(155deg, var(--olive) 0%, var(--olive-deep) 100%);
+    display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow);
+  }
+  .hero-visual .leaf-frame .branch-mark{ width:58%; height:auto; color: rgba(252,250,242,0.85); }
+  .hero-visual .cap{
+    position:absolute; bottom:-18px; left:20px; right:20px;
+    background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding:14px 18px; display:flex; align-items:center; gap:12px;
+  }
+  .hero-visual .cap svg{ width:26px; height:26px; color: var(--olive); flex-shrink:0; }
+  .hero-visual .cap span{ font-size:0.82rem; color: var(--ink-soft); line-height:1.35; }
+
+  @media (max-width:980px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ max-width:340px; margin:0 auto; order:-1; }
+    .hero-facts{ grid-template-columns:repeat(2,1fr); row-gap:18px; }
+    .hero-facts div{ border-left:none; padding-left:0; }
+  }
+
+  /* ---------- shared sections ---------- */
+  section{ padding:92px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size:clamp(1.85rem, 3.2vw, 2.5rem); }
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{ background: linear-gradient(120deg, var(--mustard) 0%, var(--mustard-deep) 100%); padding:42px 0; color:var(--paper); }
+  .cta-banner .wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .cta-banner h3{ color:var(--paper); font-size:1.4rem; margin-bottom:4px; }
+  .cta-banner p{ color: rgba(252,250,242,0.88); margin:0; }
+  .cta-banner .btns{ display:flex; gap:12px; flex-wrap:wrap; }
+  .cta-banner .btn-primary{ background: var(--night); }
+  .cta-banner .btn-primary:hover{ background:#000; }
+  .cta-banner .btn-ghost{ border-color: rgba(252,250,242,0.6); }
+
+  /* ---------- about ---------- */
+  .about{ background: var(--paper); }
+  .about-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center; }
+  .about-art{ aspect-ratio:4/5; background: linear-gradient(160deg, var(--olive-light), var(--olive)); }
+  .about-list{ list-style:none; margin:24px 0 0; padding:0; display:grid; gap:12px; }
+  .about-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.94rem; color: var(--ink-soft); }
+  .about-list svg{ width:16px; height:16px; flex-shrink:0; margin-top:4px; color: var(--olive); }
+  @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:36px; } .about-art{ aspect-ratio:16/10; max-width:340px; margin:0 auto; } }
+
+  /* ---------- rooms ---------- */
+  .rooms{ background: var(--linen); }
+  .room-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .room-card{ background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; display:flex; flex-direction:column; box-shadow: var(--shadow); }
+  .room-top{ background: linear-gradient(150deg, var(--night-soft), var(--night)); padding:28px 24px 54px; position:relative; color: var(--paper); }
+  .room-top .branch-mark{ width:52px; height:22px; color: var(--mustard); margin-bottom:14px; }
+  .room-top h3{ color:var(--paper); font-size:1.3rem; margin-bottom:6px; }
+  .room-top .sub{ font-size:0.8rem; color: rgba(252,250,242,0.6); }
+  .room-body{ padding:20px 24px 26px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .room-body p{ font-size:0.92rem; margin:0; }
+  .room-feats{ list-style:none; margin:0; padding:0; display:grid; gap:7px; }
+  .room-feats li{ display:flex; gap:9px; align-items:center; font-size:0.83rem; color: var(--ink-soft); }
+  .room-feats svg{ width:13px; height:13px; color: var(--olive); flex-shrink:0; }
+  .room-foot{ margin-top:auto; padding-top:14px; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .room-foot .rate{ font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--ink); font-size:1rem; }
+  .room-foot a{ font-size:0.8rem; font-weight:700; color: var(--olive); text-decoration:none; }
+  .room-foot a:hover{ text-decoration:underline; }
+  @media (max-width:980px){ .room-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- rates table ---------- */
+  .rates{ background: var(--paper); }
+  .rates-table{ width:100%; border-collapse:collapse; background: var(--linen); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow); }
+  .rates-table th, .rates-table td{ padding:16px 20px; text-align:left; font-size:0.9rem; border-bottom:1px solid var(--line); }
+  .rates-table th{ background: var(--olive); color: var(--paper); font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1rem; letter-spacing:0.01em; }
+  .rates-table tr:last-child td{ border-bottom:none; }
+  .rates-table td.price{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.05rem; color: var(--ink); }
+  .rates-note{ margin-top:18px; font-size:0.85rem; color: var(--ink-faint); }
+  .rates-wrap{ overflow-x:auto; }
+
+  /* ---------- gallery ---------- */
+  .gallery{ background: var(--linen); }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:14px; }
+  .gallery-grid .g1{ grid-column:span 2; grid-row:span 2; }
+  .gallery-tile{ position:relative; border-radius: var(--radius); overflow:hidden; background: linear-gradient(150deg, var(--olive-deep), var(--olive)); display:flex; align-items:flex-end; }
+  .gallery-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .gallery-tile .tile-label{ position:relative; z-index:2; width:100%; padding:11px 13px; font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; color: rgba(252,250,242,0.92); background: linear-gradient(0deg, rgba(20,20,12,0.6), transparent); }
+  .gallery-tile .tile-icon{ position:absolute; top:12px; right:12px; width:24px; height:24px; color: rgba(252,250,242,0.5); z-index:2; }
+  @media (max-width:780px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; } .gallery-grid .g1{ grid-column:span 2; grid-row:span 1; } }
+
+  /* ---------- amenities ---------- */
+  .amenities{ background: var(--paper); }
+  .amen-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px 22px; }
+  .amen-item{ text-align:center; padding:6px; }
+  .amen-item svg{ width:28px; height:28px; color: var(--olive); margin-bottom:12px; }
+  .amen-item h4{ font-size:1rem; margin-bottom:4px; }
+  .amen-item p{ font-size:0.82rem; margin:0; }
+  @media (max-width:900px){ .amen-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- area ---------- */
+  .area{ background: linear-gradient(180deg, var(--night) 0%, var(--night-soft) 100%); color: var(--paper); }
+  .area .section-head h2{ color: var(--paper); }
+  .area .section-head p{ color: rgba(252,250,242,0.68); }
+  .area-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .area-card{ border:1px solid rgba(252,250,242,0.14); border-radius: var(--radius); padding:22px; background: rgba(252,250,242,0.03); }
+  .area-card svg{ width:24px; height:24px; color: var(--mustard); margin-bottom:12px; }
+  .area-card h4{ color:var(--paper); font-size:1.02rem; margin-bottom:6px; }
+  .area-card p{ color: rgba(252,250,242,0.64); font-size:0.87rem; margin:0; }
+  @media (max-width:900px){ .area-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- map ---------- */
+  .map-section{ background: var(--linen); }
+  .map-frame{ border-radius: var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow: var(--shadow); line-height:0; }
+  .map-frame iframe{ width:100%; height:400px; border:0; display:block; }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background: var(--paper); }
+  .faq-list{ display:grid; gap:0; max-width:820px; }
+  .faq-item{ border-bottom:1px solid var(--line); padding:20px 0; }
+  .faq-item h4{ font-size:1.08rem; margin-bottom:8px; display:flex; gap:10px; align-items:baseline; }
+  .faq-item h4 svg{ width:14px; height:14px; color: var(--mustard); flex-shrink:0; align-self:center; }
+  .faq-item p{ font-size:0.92rem; margin:0; padding-left:24px; }
+
+  /* ---------- reviews ---------- */
+  .reviews{ background: var(--linen); }
+  .review-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .review-card{ background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding:26px; display:flex; flex-direction:column; gap:14px; }
+  .review-card .quote-mark{ color: var(--mustard); font-family:'Cormorant Garamond',serif; font-size:2.3rem; line-height:1; }
+  .review-card p{ font-size:0.93rem; font-style:italic; color: var(--ink); margin:0; }
+  .review-card .who{ font-size:0.8rem; color: var(--ink-faint); font-style:normal; }
+  .reviews-note{ margin-top:20px; font-size:0.78rem; color: var(--ink-faint); }
+  @media (max-width:980px){ .review-row{ grid-template-columns:1fr; } }
+
+  /* ---------- book/contact ---------- */
+  .book{ background: var(--paper); }
+  .book-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; }
+  .book-panel{ background: var(--night); color: var(--paper); border-radius: var(--radius); padding:38px; position:relative; overflow:hidden; }
+  .book-panel .branch-mark{ position:absolute; right:-20px; bottom:-10px; width:220px; height:90px; opacity:0.09; color: var(--mustard); }
+  .book-panel h3{ color:var(--paper); font-size:1.45rem; position:relative; z-index:2; }
+  .book-panel p{ color: rgba(252,250,242,0.72); position:relative; z-index:2; }
+  .contact-list{ list-style:none; margin:22px 0 0; padding:0; display:grid; gap:16px; position:relative; z-index:2; }
+  .contact-list li{ display:flex; gap:14px; align-items:flex-start; }
+  .contact-list svg{ width:18px; height:18px; color: var(--mustard); flex-shrink:0; margin-top:2px; }
+  .contact-list a{ color:var(--paper); text-decoration:none; }
+  .contact-list a:hover{ text-decoration:underline; }
+  .contact-list span.label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--olive-light); margin-bottom:2px; }
+
+  form.enquire{ display:grid; gap:16px; }
+  form.enquire .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  form.enquire label{ font-size:0.76rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase; color: var(--ink-soft); display:block; margin-bottom:6px; }
+  form.enquire input, form.enquire textarea, form.enquire select{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius: var(--radius); background: var(--linen); font-family:'Karla',sans-serif; font-size:0.92rem; color: var(--ink); }
+  form.enquire input:focus, form.enquire textarea:focus, form.enquire select:focus{ outline:2px solid var(--olive); outline-offset:1px; }
+  form.enquire textarea{ min-height:100px; resize:vertical; }
+  .form-note{ font-size:0.78rem; color: var(--ink-faint); margin-top:-4px; }
+  @media (max-width:980px){ .book-grid{ grid-template-columns:1fr; } form.enquire .row2{ grid-template-columns:1fr; } }
+
+  /* ---------- footer ---------- */
+  footer{ background: var(--night); color: rgba(252,250,242,0.7); padding:50px 0 26px; }
+  .foot-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:38px; }
+  .foot-brand{ display:flex; align-items:center; gap:12px; }
+  .foot-brand .branch-mark{ width:36px; height:20px; color: var(--mustard); }
+  .foot-brand strong{ font-family:'Cormorant Garamond',serif; color:var(--paper); font-size:1.05rem; }
+  .foot-links{ display:flex; gap:34px; flex-wrap:wrap; }
+  .foot-links h5{ font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color: var(--olive-light); margin:0 0 12px; }
+  .foot-links ul{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .foot-links a{ color: rgba(252,250,242,0.68); text-decoration:none; font-size:0.86rem; }
+  .foot-links a:hover{ color: var(--paper); }
+  .foot-bottom{ border-top:1px solid rgba(252,250,242,0.12); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.78rem; color: rgba(252,250,242,0.5); }
+  .social-row{ display:flex; gap:14px; }
+  .social-row svg{ width:18px; height:18px; }
+
+  /* ---------- floating WhatsApp + mobile sticky bar ---------- */
+  .wa-float{
+    position:fixed; right:20px; bottom:20px; z-index:200;
+    width:56px; height:56px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px -8px rgba(0,0,0,0.5); text-decoration:none; transition:transform .2s ease;
+  }
+  .wa-float:hover{ transform:scale(1.07); }
+  .wa-float svg{ width:27px; height:27px; }
+
+  .sticky-book{ display:none; position:fixed; left:0; right:0; bottom:0; z-index:199; background: var(--night); border-top:1px solid rgba(192,138,46,0.3); padding:10px 14px calc(10px + env(safe-area-inset-bottom)); gap:10px; }
+  .sticky-book a{ flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 10px; border-radius: var(--radius); font-size:0.85rem; font-weight:700; text-decoration:none; }
+  .sticky-book .call{ background: rgba(252,250,242,0.1); color: var(--paper); }
+  .sticky-book .wa{ background:#25D366; color:#fff; }
+  .sticky-book svg{ width:16px; height:16px; }
+  @media (max-width:780px){ .sticky-book{ display:flex; } body{ padding-bottom:64px; } .wa-float{ bottom:82px; } }
+
+  ::selection{ background: var(--olive-pale); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ============ shared SVG defs ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- olive branch: signature motif, echoes the guesthouse's own name -->
+    <g id="olive-branch">
+      <path d="M6,44 C55,10 145,8 214,26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <ellipse cx="46" cy="30" rx="11" ry="4.2" transform="rotate(-32 46 30)" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="76" cy="16" rx="11" ry="4.2" transform="rotate(18 76 16)" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="108" cy="11" rx="11" ry="4.2" transform="rotate(-20 108 11)" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="140" cy="12" rx="11" ry="4.2" transform="rotate(22 140 12)" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="171" cy="18" rx="11" ry="4.2" transform="rotate(-18 171 18)" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <circle cx="199" cy="27" r="3.4" fill="currentColor"/>
+      <circle cx="209" cy="33" r="3.4" fill="currentColor"/>
+    </g>
+    <g id="check-leaf">
+      <path d="M2 8c3-3 6-4 9-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <ellipse cx="11" cy="4" rx="4.5" ry="2.2" transform="rotate(-30 11 4)" fill="currentColor"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ============ header ============ -->
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+      <span class="brand-text"><strong>Olive Cottage</strong><span>Guest House · Bloemfontein</span></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#rates">Rates</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#area">Area</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp Us</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ hero ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow" style="color:var(--mustard)">
+        <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+        Dan Pienaar · Bloemfontein · Free State
+      </div>
+      <h1>A quiet stop, <em>off the N1.</em></h1>
+      <p class="lede">Olive Cottage is a small, privately-run guest house in Dan Pienaar — comfortable en-suite rooms, secure parking and a genuinely warm welcome, minutes from Northridge Mall, Mediclinic and the University of the Free State.</p>
+      <div class="proof-badge">
+        <span class="stars">★★★★½</span>
+        <span><strong>4.5/5</strong> from 10+ guest reviews online</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27d%20like%20to%20check%20availability%20for%20%5Bdates%5D." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+          Book via WhatsApp
+        </a>
+        <a href="tel:+27828866578" class="btn btn-ghost">Call Now</a>
+      </div>
+      <div class="hero-facts">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M3 12a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2M3 12v6a1 1 0 0 0 1 1h1M21 12v6a1 1 0 0 1-1 1h-1M6 19v2M18 19v2M8 10V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/></svg><span class="lbl">En-suite rooms</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg><span class="lbl">Free Wi‑Fi</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span class="lbl">Secure parking</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span class="lbl">Breakfast on request</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="leaf-frame">
+        <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+      </div>
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Dan Pienaar — close to Northridge Mall, Mediclinic &amp; UFS, minutes from the N1.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ about ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-art leaf-frame reveal"></div>
+    <div class="reveal">
+      <div class="eyebrow">
+        <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+        Welcome
+      </div>
+      <h2>A home away from home, not a hotel lobby.</h2>
+      <p>Olive Cottage has always worked on a simple idea: guests should feel looked after, not processed. It's a small, privately owned guest house — quiet, comfortable and personal, built for people who want a proper night's rest rather than a lobby full of strangers.</p>
+      <p>We're not trying to be the biggest name in Bloemfontein. We're trying to be the guest house people come back to — whether that's a business trip, a visit to family at UFS, or simply a stop on the way through on the N1.</p>
+      <ul class="about-list">
+        <li><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Privately owned and personally run</li>
+        <li><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Quiet residential setting in Dan Pienaar</li>
+        <li><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Secure, gated parking on site</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ mid CTA banner ============ -->
+<section class="cta-banner">
+  <div class="wrap">
+    <div>
+      <h3>Ready to lock in your dates?</h3>
+      <p>Message us on WhatsApp — we usually reply the same day.</p>
+    </div>
+    <div class="btns">
+      <a href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27d%20like%20to%20check%20availability%20for%20%5Bdates%5D." target="_blank" rel="noopener" class="btn btn-primary">WhatsApp Us</a>
+      <a href="tel:+27828866578" class="btn btn-ghost">Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ rooms ============ -->
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Accommodation</div>
+      <h2>Sample room types — confirm the real line-up with the owner</h2>
+      <p>Room names, features and photos below are a placeholder structure to show what the finished page can hold — swap in Olive Cottage's actual rooms once confirmed.</p>
+    </div>
+    <div class="room-grid">
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+          <h3>Standard En-Suite</h3>
+          <span class="sub">Double or twin · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>[Room description — bedding type, size, outlook.]</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Air conditioning &amp; TV</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Tea &amp; coffee station</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Free Wi‑Fi</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[650] p/night</span>
+            <a href="https://wa.me/27828866578?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Standard%20En-Suite%20room%20at%20Olive%20Cottage." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+          <h3>Superior En-Suite</h3>
+          <span class="sub">Queen room · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>[Room description — bedding type, size, outlook.]</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Air conditioning &amp; TV</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Breakfast available on request</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Free Wi‑Fi</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[780] p/night</span>
+            <a href="https://wa.me/27828866578?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Superior%20En-Suite%20room%20at%20Olive%20Cottage." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+          <h3>Family Room</h3>
+          <span class="sub">Sleeps up to 4 · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>[Room description — bedding type, size, outlook.]</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Air conditioning &amp; TV</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Extra sleeping space</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Free Wi‑Fi</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[950] p/night</span>
+            <a href="https://wa.me/27828866578?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Family%20Room%20at%20Olive%20Cottage." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ rates ============ -->
+<section class="rates" id="rates">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Rates</div>
+      <h2>Guide pricing</h2>
+      <p>Placeholder figures — replace with confirmed rates. Showing a "from" price builds trust; exact pricing is always confirmed on enquiry.</p>
+    </div>
+    <div class="rates-wrap reveal">
+      <table class="rates-table">
+        <thead>
+          <tr><th>Room type</th><th>Sleeps</th><th>Rate</th><th>Includes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Standard En-Suite</td><td>2</td><td class="price">From R[650] p/night</td><td>[Wi‑Fi, parking]</td></tr>
+          <tr><td>Superior En-Suite</td><td>2</td><td class="price">From R[780] p/night</td><td>[Wi‑Fi, parking, breakfast on request]</td></tr>
+          <tr><td>Family Room</td><td>4</td><td class="price">From R[950] p/night</td><td>[Wi‑Fi, parking, breakfast on request]</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rates-note">Rates shown are indicative. Final pricing is confirmed by WhatsApp or phone at the time of booking.</p>
+  </div>
+</section>
+
+<!-- ============ gallery ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Gallery</div>
+      <h2>A look around Olive Cottage</h2>
+      <p>Placeholder tiles — drop a photo into each one (see the instructions comment at the top of this file) and it replaces the colour block automatically.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-tile g1"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Exterior &amp; entrance</span></div>
+      <div class="gallery-tile"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Standard En-Suite</span></div>
+      <div class="gallery-tile"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Bathroom</span></div>
+      <div class="gallery-tile"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Breakfast</span></div>
+      <div class="gallery-tile"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Garden / patio</span></div>
+      <div class="gallery-tile"><svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="tile-label">Secure parking</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ amenities ============ -->
+<section class="amenities" id="amenities">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> What's Included</div>
+      <h2>Everything you need, close by</h2>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M3 12a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2M3 12v6a1 1 0 0 0 1 1h1M21 12v6a1 1 0 0 1-1 1h-1M6 19v2M18 19v2M8 10V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/></svg><h4>Private En-Suite</h4><p>Every room has its own bathroom.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="5"/></svg><h4>Air Conditioning</h4><p>Climate control in every room.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h4>Television</h4><p>DSTV / TV in every room.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><h4>Tea &amp; Coffee</h4><p>In-room facilities, every stay.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg><h4>Free Wi‑Fi</h4><p>Connectivity throughout your stay.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><h4>Secure Parking</h4><p>Gated, off-street parking.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><h4>Breakfast</h4><p>Available depending on your booking.</p></div>
+      <div class="amen-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><h4>Quiet Location</h4><p>Residential Dan Pienaar setting.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ area ============ -->
+<section class="area" id="area">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="color:var(--mustard)"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Nearby</div>
+      <h2>Well placed in Dan Pienaar</h2>
+      <p>Central enough for business, quiet enough to rest — a short drive from Bloemfontein's main landmarks.</p>
+    </div>
+    <div class="area-grid">
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><h4>Northridge Mall</h4><p>Shopping, restaurants and everyday errands minutes away.</p></div>
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg><h4>Preller Square</h4><p>Cafés, shops and a local hub within easy reach.</p></div>
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z"/></svg><h4>Mediclinic Bloemfontein</h4><p>Convenient for guests visiting patients or attending appointments.</p></div>
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><h4>University of the Free State</h4><p>A short drive for parents visiting Kovsie students.</p></div>
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg><h4>Restaurants &amp; Coffee Shops</h4><p>A good spread of local dining within a few minutes' drive.</p></div>
+      <div class="area-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 12h22M1 12l4-4M1 12l4 4M23 12l-4-4M23 12l-4 4"/></svg><h4>The N1 Highway</h4><p>An easy overnight stop for travellers passing through.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ map ============ -->
+<section class="map-section" id="location">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Find Us</div>
+      <h2>Getting here</h2>
+      <p>Currently centred on Dan Pienaar generally — replace the map src with an embed of the exact street address once confirmed (Google Maps → Share → Embed a map).</p>
+    </div>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps?q=Dan+Pienaar+Bloemfontein+Free+State+9301&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Dan Pienaar, Bloemfontein"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Good to Know</div>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> What time is check-in and check-out?</h4>
+        <p>[Check-in from __:00, check-out by __:00 — confirm with the owner.]</p>
+      </div>
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Is breakfast included?</h4>
+        <p>Breakfast is available depending on your booking — mention it when you enquire and we'll confirm what's included.</p>
+      </div>
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Is parking secure?</h4>
+        <p>Yes — secure, gated parking is available on site for all guests.</p>
+      </div>
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> Do you allow pets?</h4>
+        <p>[Confirm pet policy with the owner.]</p>
+      </div>
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> How do I pay?</h4>
+        <p>[Confirm accepted payment methods — EFT, card, cash — with the owner.]</p>
+      </div>
+      <div class="faq-item">
+        <h4><svg class="branch-mark" viewBox="0 0 15 10"><use href="#check-leaf"/></svg> How far is Olive Cottage from the N1?</h4>
+        <p>Dan Pienaar is a short, convenient drive from the N1, making it an easy overnight stop for travellers passing through Bloemfontein.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ reviews ============ -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Guests Say</div>
+      <h2>What people remember about staying here</h2>
+      <div class="proof-badge light">
+        <span class="stars">★★★★½</span>
+        <span><strong>4.5/5</strong> · 10+ reviews across Facebook &amp; directory listings</span>
+      </div>
+    </div>
+    <div class="review-row">
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+    </div>
+    <p class="reviews-note">⚠ These are placeholder quotes, not real reviews — pull the actual ones from Facebook or directory listings before this goes live.</p>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="wrap">
+    <div>
+      <h3>Still deciding?</h3>
+      <p>Send a quick WhatsApp — we usually reply within the hour.</p>
+    </div>
+    <div class="btns">
+      <a href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27ve%20got%20a%20question%20about%20a%20stay." target="_blank" rel="noopener" class="btn btn-primary">WhatsApp Us</a>
+      <a href="#book" class="btn btn-ghost">Enquiry Form</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ book/contact ============ -->
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div class="book-panel reveal">
+      <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+      <div class="eyebrow" style="color:var(--mustard)"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Get In Touch</div>
+      <h3>Book your stay at Olive Cottage</h3>
+      <p>We take bookings by phone, WhatsApp, Facebook message or the form alongside — whichever's easiest for you.</p>
+      <ul class="contact-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><span class="label">Cell / WhatsApp</span><a href="tel:+27828866578">082 886 6578</a> · <a href="https://wa.me/27828866578" target="_blank" rel="noopener">WhatsApp</a></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><span class="label">Landline</span><a href="tel:+27514361781">051 436 1781</a></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><span class="label">Address</span>Dan Pienaar, Bloemfontein, Free State, 9301<br>[Add exact street address]</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM12 18h.01"/></svg>
+          <span><span class="label">Find us</span><a href="#" target="_blank" rel="noopener">Facebook Page ↗</a> [add facebook-link]</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="book-form reveal">
+      <div class="eyebrow"><svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg> Send an Enquiry</div>
+      <h3>Check dates &amp; availability</h3>
+      <p style="margin-bottom:22px;">Fill this in and we'll get back to you — or reach us directly by phone or WhatsApp.</p>
+      <form class="enquire" onsubmit="return false;">
+        <div class="row2">
+          <div><label for="name">Full name</label><input id="name" type="text" placeholder="Your name" required></div>
+          <div><label for="contact">Phone or email</label><input id="contact" type="text" placeholder="How should we reach you?" required></div>
+        </div>
+        <div class="row2">
+          <div><label for="checkin">Check-in</label><input id="checkin" type="date"></div>
+          <div><label for="checkout">Check-out</label><input id="checkout" type="date"></div>
+        </div>
+        <div>
+          <label for="room">Room preference</label>
+          <select id="room">
+            <option>No preference</option>
+            <option>Standard En-Suite</option>
+            <option>Superior En-Suite</option>
+            <option>Family Room</option>
+          </select>
+        </div>
+        <div><label for="msg">Message</label><textarea id="msg" placeholder="Number of guests, special requests, etc."></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Enquiry</button>
+        <p class="form-note">This form is a template — connect it to email, WhatsApp or a booking platform (e.g. NightsBridge) to make it live, or add an availability calendar widget here.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg class="branch-mark" viewBox="0 0 220 60"><use href="#olive-branch"/></svg>
+        <div><strong>Olive Cottage Guest House</strong><div style="font-size:0.78rem;color:rgba(252,250,242,0.55);">Dan Pienaar, Bloemfontein, Free State</div></div>
+      </div>
+      <div class="foot-links">
+        <div><h5>Explore</h5><ul><li><a href="#about">About</a></li><li><a href="#rooms">Rooms</a></li><li><a href="#area">Nearby</a></li></ul></div>
+        <div><h5>Stay</h5><ul><li><a href="#book">Contact</a></li><li><a href="#reviews">Guest Reviews</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div><h5>Find Us Online</h5><ul><li><a href="#" target="_blank" rel="noopener">Facebook Page ↗</a></li></ul></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Olive Cottage Guest House, Dan Pienaar, Bloemfontein. All rights reserved.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- floating WhatsApp button -->
+<a class="wa-float" href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
+
+<!-- mobile sticky booking bar -->
+<div class="sticky-book">
+  <a class="call" href="tel:+27828866578">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call
+  </a>
+  <a class="wa" href="https://wa.me/27828866578?text=Hi%20Olive%20Cottage%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10 ? '0 8px 24px -12px rgba(0,0,0,0.4)' : 'none';
+  });
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>

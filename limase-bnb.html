@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<!--
+  Limase B&B — Queenstown (Komani), Eastern Cape
+  ------------------------------------------------
+  EDITABLE PLACEHOLDERS: search for [ ] brackets throughout this file —
+  these mark contact details, exact address, rates and photos that should
+  be swapped for Limase B&B's real information before this goes live.
+  Room names, amenities and area notes are written to be easy to adjust.
+
+  IMPORTANT — search and replace "27000000000" everywhere (it appears in
+  several wa.me links) with the real WhatsApp number, digits only, country
+  code first, no + or spaces (e.g. South African 082 123 4567 -> 27821234567).
+  Also replace "tel:+27000000000" with the real phone number.
+
+  PHOTOS: search for "gallery-tile", "about-art" and "area-card-img" —
+  each is a placeholder block. Drop an <img src="images/yourfile.jpg"
+  alt="..."> as the first child inside it and the placeholder styling
+  falls away automatically (the img sits on top, object-fit: cover).
+
+  MAP: the iframe in the "map-frame" div currently searches Google Maps
+  for the town generally — replace the src with a pin on the exact
+  address once you have one (Google Maps > Share > Embed a map).
+
+  REVIEWS: the three review cards are placeholder text. Replace with
+  real quotes copied from Facebook, Google or a directory listing.
+
+  Design note: the recurring hexagon-with-six-spokes motif is drawn from
+  Komani's own town plan — laid out in 1853 around a central hexagon with
+  six streets radiating outward. It's used here as the site's signature
+  device instead of generic decoration.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limase B&B — Queenstown (Komani), Eastern Cape</title>
+<meta name="description" content="Limase B&B in Queenstown (Komani), Eastern Cape — warm, comfortable guesthouse accommodation at the foot of the Stormberg highlands.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --linen: #F2ECDB;
+    --paper: #FBF8EF;
+    --ink: #241C14;
+    --ink-soft: #5C5240;
+    --ink-faint: #8A8067;
+    --clay: #A8552C;
+    --clay-deep: #7C3D1D;
+    --sage: #545F45;
+    --sage-deep: #3C4531;
+    --gold: #C6A15B;
+    --gold-soft: #E4D3A7;
+    --night: #1C160F;
+    --night-soft: #2A2116;
+    --line: rgba(36,28,20,0.14);
+    --radius: 2px;
+    --max: 1180px;
+    --shadow: 0 18px 40px -22px rgba(28,22,15,0.35);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--linen);
+    color: var(--ink);
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0 0 0.4em;
+    color: var(--ink);
+  }
+
+  p{ margin: 0 0 1em; color: var(--ink-soft); }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Work Sans',sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .eyebrow svg{ width:16px; height:16px; flex-shrink:0; }
+
+  /* ---------- hexagon signature motif ---------- */
+  .hex-mark{ display:inline-block; }
+  .hex-mark path, .hex-mark line, .hex-mark polygon{ vector-effect: non-scaling-stroke; }
+
+  .hex-divider{
+    display:flex; align-items:center; justify-content:center;
+    gap: 14px; margin: 0 auto; width: 100%;
+    color: var(--gold);
+  }
+  .hex-divider .rule{ height:1px; flex:1; background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent); }
+  .hex-divider svg{ width:26px; height:26px; flex-shrink:0; opacity:0.9; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 14px 26px;
+    font-family:'Work Sans',sans-serif;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration:none;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor:pointer;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color .25s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--clay); color: var(--paper); }
+  .btn-primary:hover{ background: var(--clay-deep); }
+  .btn-ghost{ background: transparent; color: var(--paper); border-color: rgba(251,248,239,0.45); }
+  .btn-ghost:hover{ background: rgba(251,248,239,0.1); border-color: var(--paper); }
+  .btn-line{ background: transparent; color: var(--clay); border-color: var(--clay); }
+  .btn-line:hover{ background: var(--clay); color: var(--paper); }
+  a.btn:focus-visible, button:focus-visible, a:focus-visible{
+    outline: 2px solid var(--clay); outline-offset: 3px;
+  }
+
+  /* ---------- header / nav ---------- */
+  header{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(28,22,15,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(198,161,91,0.25);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 28px;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color: var(--paper);
+  }
+  .brand .hex-mark{ width:34px; height:34px; color: var(--gold); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text strong{ font-family:'Fraunces',serif; font-size:1.18rem; font-weight:600; letter-spacing:0.01em; }
+  .brand-text span{ font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color: var(--gold-soft); }
+
+  nav.links{ display:flex; align-items:center; gap:30px; }
+  nav.links a{
+    color: rgba(251,248,239,0.82); text-decoration:none; font-size:0.86rem; font-weight:500;
+    letter-spacing:0.01em; position:relative; padding: 4px 0;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background: var(--gold); transition: width .25s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .menu-toggle{
+    display:none; background:none; border:none; color: var(--paper); cursor:pointer;
+    padding: 6px; width: 40px; height: 40px; align-items:center; justify-content:center;
+  }
+  .menu-toggle svg{ width:22px; height:22px; }
+
+  @media (max-width: 880px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0;
+      background: var(--night); border-bottom: 1px solid rgba(198,161,91,0.25);
+      max-height:0; overflow:hidden; transition: max-height .3s ease;
+    }
+    nav.links.open{ max-height: 420px; }
+    nav.links a{ padding: 16px 28px; width:100%; border-top: 1px solid rgba(255,255,255,0.06); }
+    .nav-cta .btn-ghost{ display:none; }
+    .menu-toggle{ display:flex; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    background: radial-gradient(120% 140% at 15% 0%, #2a2116 0%, var(--night) 55%, #140f0a 100%);
+    color: var(--paper);
+    overflow:hidden;
+    padding: 100px 0 130px;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(198,161,91,0.16) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-hex{
+    position:absolute; top:50%; right:-8%; transform: translateY(-50%);
+    width: min(62vw, 780px); height: min(62vw, 780px);
+    opacity: 0.9;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items:end;
+  }
+  .hero-copy{ max-width: 640px; }
+  .hero h1{
+    font-size: clamp(2.4rem, 5vw, 3.9rem);
+    color: var(--paper);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em{ font-style: italic; color: var(--gold-soft); font-weight: 450; }
+  .hero .lede{
+    color: rgba(251,248,239,0.78); font-size: 1.08rem; max-width: 520px; margin-bottom: 30px;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom: 46px; }
+
+  .hero-facts{
+    display:grid; grid-template-columns: repeat(4,1fr); gap: 0;
+    border-top: 1px solid rgba(251,248,239,0.18);
+    padding-top: 22px;
+  }
+  .hero-facts div{ padding-right: 18px; border-left: 1px solid rgba(251,248,239,0.16); padding-left: 18px; }
+  .hero-facts div:first-child{ border-left:none; padding-left:0; }
+  .hero-facts .num{ font-family:'Fraunces',serif; font-size:1.5rem; color: var(--gold-soft); font-weight:600; display:block; }
+  .hero-facts .lbl{ font-size:0.74rem; letter-spacing:0.06em; color: rgba(251,248,239,0.6); }
+
+  @media (max-width: 980px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .hero-hex{ opacity: 0.35; width: 120vw; height:120vw; right:-30%; top:8%; transform:none; }
+    .hero-facts{ grid-template-columns: repeat(2,1fr); row-gap: 18px; }
+    .hero-facts div{ border-left:none; padding-left:0; }
+  }
+
+  /* ---------- sections shared ---------- */
+  section{ padding: 96px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- welcome / about ---------- */
+  .about{ background: var(--paper); }
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:center; }
+  .about-art{
+    position:relative; aspect-ratio: 4/5; border-radius: var(--radius);
+    background: linear-gradient(160deg, var(--sage) 0%, var(--sage-deep) 100%);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .about-art .hex-mark{ width: 62%; height:62%; color: rgba(251,248,239,0.85); }
+  .about-art::after{
+    content:'Hangklip Mountain • the Stormberg foothills';
+    position:absolute; bottom:0; left:0; right:0;
+    padding: 16px 20px; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+    color: rgba(251,248,239,0.85); background: linear-gradient(0deg, rgba(20,16,10,0.55), transparent);
+  }
+  .about-copy p{ font-size: 1.02rem; }
+  .about-list{ list-style:none; margin: 26px 0 0; padding:0; display:grid; gap:12px; }
+  .about-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.94rem; color: var(--ink-soft); }
+  .about-list svg{ width:17px; height:17px; flex-shrink:0; margin-top:3px; color: var(--clay); }
+
+  @media (max-width: 900px){
+    .about-grid{ grid-template-columns:1fr; gap: 40px; }
+    .about-art{ aspect-ratio: 16/10; }
+  }
+
+  /* ---------- rooms ---------- */
+  .rooms{ background: var(--linen); }
+  .room-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .room-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow: var(--shadow);
+  }
+  .room-top{
+    background: linear-gradient(150deg, var(--night-soft), var(--night));
+    padding: 30px 26px 60px;
+    position:relative; color: var(--paper);
+  }
+  .room-top .hex-badge{
+    width:44px; height:44px; color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .room-top h3{ color: var(--paper); font-size:1.35rem; margin-bottom:6px; }
+  .room-top .sub{ font-size:0.82rem; color: rgba(251,248,239,0.62); letter-spacing:0.02em; }
+  .room-body{ padding: 22px 26px 28px; display:flex; flex-direction:column; gap:16px; flex:1; }
+  .room-body p{ font-size:0.93rem; margin:0; }
+  .room-feats{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .room-feats li{ display:flex; gap:9px; align-items:center; font-size:0.84rem; color: var(--ink-soft); }
+  .room-feats svg{ width:14px; height:14px; color: var(--clay); flex-shrink:0; }
+  .room-foot{
+    margin-top:auto; padding-top:14px; border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .room-foot .rate{ font-family:'Fraunces',serif; font-weight:600; color: var(--ink); font-size:0.95rem; }
+  .room-foot a{ font-size:0.82rem; font-weight:600; color: var(--clay); text-decoration:none; }
+  .room-foot a:hover{ text-decoration:underline; }
+
+  @media (max-width: 980px){ .room-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- amenities ---------- */
+  .amenities{ background: var(--paper); }
+  .amen-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px 24px; }
+  .amen-item{ text-align:center; padding: 6px; }
+  .amen-item svg{ width:30px; height:30px; color: var(--clay); margin-bottom:14px; }
+  .amen-item h4{ font-size:1rem; margin-bottom:6px; }
+  .amen-item p{ font-size:0.84rem; margin:0; }
+  @media (max-width:900px){ .amen-grid{ grid-template-columns: repeat(2,1fr); } }
+
+  /* ---------- area ---------- */
+  .area{
+    background: linear-gradient(180deg, var(--night) 0%, var(--night-soft) 100%);
+    color: var(--paper); position:relative; overflow:hidden;
+  }
+  .area .wrap{ position:relative; z-index:2; }
+  .area .section-head h2{ color: var(--paper); }
+  .area .section-head p{ color: rgba(251,248,239,0.68); }
+  .area-hex{ position:absolute; left:-10%; top:-10%; width:60vw; height:60vw; opacity:0.12; }
+  .area-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
+  .area-card{
+    border: 1px solid rgba(251,248,239,0.14);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: rgba(251,248,239,0.03);
+  }
+  .area-card .tag{ font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--gold-soft); margin-bottom:10px; display:block; }
+  .area-card h4{ color: var(--paper); font-size:1.08rem; margin-bottom:8px; }
+  .area-card p{ color: rgba(251,248,239,0.66); font-size:0.9rem; margin:0; }
+  @media (max-width:900px){ .area-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- reviews ---------- */
+  .reviews{ background: var(--linen); }
+  .review-row{ display:grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .review-card{
+    background: var(--paper); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; display:flex; flex-direction:column; gap:16px;
+  }
+  .review-card .quote-mark{ color: var(--gold); font-family:'Fraunces',serif; font-size:2.4rem; line-height:1; }
+  .review-card p{ font-size:0.94rem; font-style:italic; color: var(--ink); margin:0; }
+  .review-card .who{ font-size:0.8rem; color: var(--ink-faint); font-style:normal; }
+  .reviews-note{ margin-top:22px; font-size:0.78rem; color: var(--ink-faint); }
+  @media (max-width:980px){ .review-row{ grid-template-columns:1fr; } }
+
+  /* ---------- booking / contact ---------- */
+  .book{ background: var(--paper); }
+  .book-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; }
+  .book-panel{
+    background: var(--night); color: var(--paper); border-radius: var(--radius);
+    padding: 40px; position:relative; overflow:hidden;
+  }
+  .book-panel .hex-mark{ position:absolute; right:-40px; bottom:-40px; width:220px; height:220px; opacity:0.08; color: var(--gold); }
+  .book-panel h3{ color: var(--paper); font-size:1.5rem; position:relative; z-index:2; }
+  .book-panel p{ color: rgba(251,248,239,0.72); position:relative; z-index:2; }
+  .contact-list{ list-style:none; margin: 24px 0 0; padding:0; display:grid; gap:16px; position:relative; z-index:2; }
+  .contact-list li{ display:flex; gap:14px; align-items:flex-start; }
+  .contact-list svg{ width:19px; height:19px; color: var(--gold); flex-shrink:0; margin-top:2px; }
+  .contact-list a{ color: var(--paper); text-decoration:none; }
+  .contact-list a:hover{ text-decoration:underline; }
+  .contact-list span.label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--gold-soft); margin-bottom:2px; }
+
+  form.enquire{ display:grid; gap:16px; }
+  form.enquire .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  form.enquire label{ font-size:0.78rem; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; color: var(--ink-soft); display:block; margin-bottom:6px; }
+  form.enquire input, form.enquire textarea, form.enquire select{
+    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius: var(--radius);
+    background: var(--linen); font-family:'Work Sans',sans-serif; font-size:0.92rem; color: var(--ink);
+  }
+  form.enquire input:focus, form.enquire textarea:focus, form.enquire select:focus{
+    outline:2px solid var(--clay); outline-offset:1px;
+  }
+  form.enquire textarea{ min-height:110px; resize:vertical; }
+  form.enquire .btn-primary{ justify-self:start; }
+  .form-note{ font-size:0.78rem; color: var(--ink-faint); margin-top:-4px; }
+
+  @media (max-width: 980px){ .book-grid{ grid-template-columns:1fr; } form.enquire .row2{ grid-template-columns:1fr; } }
+
+  /* ---------- footer ---------- */
+  footer{ background: var(--night); color: rgba(251,248,239,0.7); padding: 54px 0 28px; }
+  .foot-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap: 30px; margin-bottom: 40px; }
+  .foot-brand{ display:flex; align-items:center; gap:12px; }
+  .foot-brand .hex-mark{ width:28px; height:28px; color: var(--gold); }
+  .foot-brand strong{ font-family:'Fraunces',serif; color: var(--paper); font-size:1.05rem; }
+  .foot-links{ display:flex; gap:34px; flex-wrap:wrap; }
+  .foot-links h5{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color: var(--gold-soft); margin:0 0 12px; }
+  .foot-links ul{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .foot-links a{ color: rgba(251,248,239,0.68); text-decoration:none; font-size:0.86rem; }
+  .foot-links a:hover{ color: var(--paper); }
+  .foot-bottom{
+    border-top:1px solid rgba(251,248,239,0.12); padding-top: 20px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.78rem; color: rgba(251,248,239,0.5);
+  }
+  .social-row{ display:flex; gap:14px; }
+  .social-row a{ color: rgba(251,248,239,0.7); }
+  .social-row svg{ width:18px; height:18px; }
+
+  /* ---------- social proof badge ---------- */
+  .proof-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background: rgba(251,248,239,0.08); border: 1px solid rgba(251,248,239,0.2);
+    padding: 9px 16px; border-radius: 999px; font-size: 0.82rem; color: rgba(251,248,239,0.9);
+    margin-bottom: 22px;
+  }
+  .proof-badge .stars{ color: var(--gold); letter-spacing:1px; }
+  .proof-badge strong{ color: var(--paper); }
+  .proof-badge.light{ background: rgba(36,28,20,0.05); border-color: var(--line); color: var(--ink-soft); }
+  .proof-badge.light strong{ color: var(--ink); }
+  .proof-badge.light .stars{ color: var(--clay); }
+
+  /* ---------- CTA banner (mid-page) ---------- */
+  .cta-banner{
+    background: linear-gradient(120deg, var(--clay) 0%, var(--clay-deep) 100%);
+    padding: 44px 0; color: var(--paper);
+  }
+  .cta-banner .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap: 24px; flex-wrap:wrap;
+  }
+  .cta-banner h3{ color:var(--paper); font-size:1.4rem; margin-bottom:4px; }
+  .cta-banner p{ color: rgba(251,248,239,0.85); margin:0; }
+  .cta-banner .btns{ display:flex; gap:12px; flex-wrap:wrap; }
+  .cta-banner .btn-primary{ background: var(--night); }
+  .cta-banner .btn-primary:hover{ background: #000; }
+  .cta-banner .btn-ghost{ border-color: rgba(251,248,239,0.6); }
+
+  /* ---------- gallery ---------- */
+  .gallery{ background: var(--paper); }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 160px;
+    gap: 14px;
+  }
+  .gallery-grid .g1{ grid-column: span 2; grid-row: span 2; }
+  .gallery-tile{
+    position:relative; border-radius: var(--radius); overflow:hidden;
+    background: linear-gradient(150deg, var(--sage-deep), var(--sage));
+    display:flex; align-items:flex-end;
+  }
+  .gallery-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .gallery-tile .tile-label{
+    position:relative; z-index:2; width:100%;
+    padding: 12px 14px;
+    font-size: 0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+    color: rgba(251,248,239,0.92);
+    background: linear-gradient(0deg, rgba(20,16,10,0.6), transparent);
+  }
+  .gallery-tile .tile-icon{
+    position:absolute; top:14px; right:14px; width:26px; height:26px;
+    color: rgba(251,248,239,0.55); z-index:2;
+  }
+  @media (max-width: 780px){
+    .gallery-grid{ grid-template-columns: repeat(2,1fr); grid-auto-rows: 140px; }
+    .gallery-grid .g1{ grid-column: span 2; grid-row: span 1; }
+  }
+
+  /* ---------- map ---------- */
+  .map-section{ background: var(--linen); }
+  .map-frame{
+    border-radius: var(--radius); overflow:hidden; border: 1px solid var(--line);
+    box-shadow: var(--shadow); line-height:0;
+  }
+  .map-frame iframe{ width:100%; height: 420px; border:0; display:block; }
+
+  /* area image on cards */
+  .area-card-img{
+    height: 140px; border-radius: var(--radius); overflow:hidden; margin-bottom:16px;
+    background: linear-gradient(150deg, var(--sage-deep), var(--sage));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .area-card-img svg{ width:34px; height:34px; color: rgba(251,248,239,0.5); }
+  .area-card-img img{ width:100%; height:100%; object-fit:cover; }
+
+  /* ---------- floating WhatsApp button ---------- */
+  .wa-float{
+    position: fixed; right: 22px; bottom: 22px; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 26px -8px rgba(0,0,0,0.5);
+    text-decoration:none;
+    transition: transform .2s ease;
+  }
+  .wa-float:hover{ transform: scale(1.07); }
+  .wa-float svg{ width:28px; height:28px; }
+
+  /* ---------- mobile sticky booking bar ---------- */
+  .sticky-book{
+    display:none;
+    position: fixed; left:0; right:0; bottom:0; z-index:199;
+    background: var(--night);
+    border-top: 1px solid rgba(198,161,91,0.3);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    gap: 10px;
+  }
+  .sticky-book a{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    padding: 12px 10px; border-radius: var(--radius);
+    font-size:0.86rem; font-weight:600; text-decoration:none;
+  }
+  .sticky-book .call{ background: rgba(251,248,239,0.1); color: var(--paper); }
+  .sticky-book .wa{ background:#25D366; color:#fff; }
+  .sticky-book svg{ width:17px; height:17px; }
+  @media (max-width: 780px){
+    .sticky-book{ display:flex; }
+    body{ padding-bottom: 66px; }
+    .wa-float{ bottom: 84px; }
+  }
+
+  ::selection{ background: var(--gold-soft); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ============ shared hexagon SVG (defs reused via <use>) ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="hex-spokes">
+      <!-- hexagon outline -->
+      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <!-- six spokes radiating from centre, echoing Komani's original street plan -->
+      <line x1="50" y1="50" x2="50" y2="4" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="50" y1="50" x2="90" y2="27" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="50" y1="50" x2="90" y2="73" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="50" y1="50" x2="50" y2="96" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="50" y1="50" x2="10" y2="73" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="50" y1="50" x2="10" y2="27" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="50" cy="50" r="4" fill="currentColor"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ============ header ============ -->
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+      <span class="brand-text"><strong>Limase B&amp;B</strong><span>Queenstown · Komani</span></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">Welcome</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#area">The Area</a>
+      <a href="#reviews">Guests Say</a>
+      <a href="#book">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp Us</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ hero ============ -->
+<section class="hero" id="top">
+  <svg class="hero-hex" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow" style="color:var(--gold-soft)">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Queenstown (Komani) · Eastern Cape
+      </div>
+      <h1>Six streets converge.<br><em>One warm welcome.</em></h1>
+      <p class="lede">Limase B&amp;B is a small, personally run guesthouse in Komani — the highlands town built around a hexagon, where farm roads, mountain passes and the N6 all meet. Come in off the road, put your feet up, and start the morning with a proper breakfast.</p>
+      <div class="proof-badge">
+        <span class="stars">★★★★★</span>
+        <span><strong>[4.8]/5</strong> from [124] guests on Facebook &amp; BnB Finder</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27d%20like%20to%20check%20availability%20for%20%5Bdates%5D." target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+          WhatsApp to Book
+        </a>
+        <a href="tel:+27000000000" class="btn btn-ghost">Call Now</a>
+      </div>
+      <div class="hero-facts">
+        <div><span class="num">3</span><span class="lbl">Guest rooms</span></div>
+        <div><span class="num">✓</span><span class="lbl">Free Wi‑Fi</span></div>
+        <div><span class="num">✓</span><span class="lbl">Secure parking</span></div>
+        <div><span class="num">7am</span><span class="lbl">Breakfast served</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ welcome / about ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-art reveal">
+      <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+    </div>
+    <div class="about-copy reveal">
+      <div class="eyebrow">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Welcome
+      </div>
+      <h2>A guesthouse run the way this town was built — around people, not just passing trade.</h2>
+      <p>Komani was laid out in 1853 with six streets radiating from a central hexagon, so that no corner of the settlement was ever far from the middle. Limase B&amp;B works on the same principle: wherever you're headed next — the Stormberg, the Wild Coast, a farm auction, a family visit — you're never far from a comfortable, quiet base here in the middle of it all.</p>
+      <p>We keep the guesthouse small on purpose. A handful of rooms, kept spotless, a breakfast table where you'll actually talk to your hosts, and the kind of local knowledge you won't find on a booking site — where to fish, which pass is closed after rain, and which bakery opens first.</p>
+      <ul class="about-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Family-run, with hosts on site every day</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Central to town, the N6 and surrounding farm roads</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Full cooked breakfast included with every stay</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ rooms ============ -->
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Rooms
+      </div>
+      <h2>Rooms named for the roads that lead here</h2>
+      <p>Each room is en suite with its own character — replace the details below with your actual room names, photos and rates.</p>
+    </div>
+
+    <div class="room-grid">
+      <!-- Room 1 -->
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="hex-badge hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+          <h3>The Hangklip Room</h3>
+          <span class="sub">Queen room · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>A quiet double looking toward the mountain the town is named for — [add room description: bedding, view, size].</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Queen bed, en suite shower</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> DSTV &amp; free Wi‑Fi</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Tea &amp; coffee station</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[850] p/night</span>
+            <a href="https://wa.me/27000000000?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Hangklip%20Room%20at%20Limase%20B%26B." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 2 -->
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="hex-badge hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+          <h3>The Bongolo Room</h3>
+          <span class="sub">Twin room · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>Named for the dam in the hills above town — a good fit for two travelling together. [add room description].</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Two single beds, en suite shower</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> DSTV &amp; free Wi‑Fi</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Garden-facing</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[850] p/night</span>
+            <a href="https://wa.me/27000000000?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Bongolo%20Room%20at%20Limase%20B%26B." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room 3 -->
+      <div class="room-card reveal">
+        <div class="room-top">
+          <svg class="hex-badge hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+          <h3>The Komani Suite</h3>
+          <span class="sub">Family suite · en suite</span>
+        </div>
+        <div class="room-body">
+          <p>The largest room, suited to families or longer stays. [add room description].</p>
+          <ul class="room-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Queen bed + sleeper couch</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Private entrance</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg> Small kitchenette</li>
+          </ul>
+          <div class="room-foot">
+            <span class="rate">From R[1,250] incl. breakfast</span>
+            <a href="https://wa.me/27000000000?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Komani%20Suite%20at%20Limase%20B%26B." target="_blank" rel="noopener">Book on WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ mid-page CTA banner ============ -->
+<section class="cta-banner">
+  <div class="wrap">
+    <div>
+      <h3>Ready to lock in your dates?</h3>
+      <p>Message us your dates on WhatsApp and we'll confirm availability the same day.</p>
+    </div>
+    <div class="btns">
+      <a href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27d%20like%20to%20check%20availability%20for%20%5Bdates%5D." target="_blank" rel="noopener" class="btn btn-primary">WhatsApp Us</a>
+      <a href="tel:+27000000000" class="btn btn-ghost">Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ gallery ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Gallery
+      </div>
+      <h2>A look around Limase B&amp;B</h2>
+      <p>Placeholder tiles below — drop a photo into each one (see the instructions comment at the top of this file) and it replaces the colour block automatically.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-tile g1">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Exterior — front view</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Hangklip Room</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Bongolo Room</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">En suite bathroom</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Dining room</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Garden</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Parking</span>
+      </div>
+      <div class="gallery-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="tile-label">Breakfast spread</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ amenities ============ -->
+<section class="amenities" id="amenities">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        What's Included
+      </div>
+      <h2>Everything you need, nothing you don't</h2>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        <h4>Free Wi‑Fi</h4>
+        <p>Fibre throughout the house and garden.</p>
+      </div>
+      <div class="amen-item reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <h4>Secure Parking</h4>
+        <p>Off-street, gated parking on the property.</p>
+      </div>
+      <div class="amen-item reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <h4>Full Breakfast</h4>
+        <p>A proper cooked breakfast, included every morning.</p>
+      </div>
+      <div class="amen-item reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <h4>Garden &amp; Braai</h4>
+        <p>Quiet garden setting with braai facilities for guests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ area ============ -->
+<section class="area" id="area">
+  <svg class="area-hex hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="color:var(--gold-soft)">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        The Area
+      </div>
+      <h2>Komani, at the foot of the Stormberg</h2>
+      <p>Set in the upper Komani River valley, the town is a natural stopping point for the Eastern Cape highlands — close enough to explore, quiet enough to rest.</p>
+    </div>
+    <div class="area-grid">
+      <div class="area-card reveal">
+        <div class="area-card-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <span class="tag">In Town</span>
+        <h4>The Hexagon</h4>
+        <p>Komani's historic centre — the original hexagonal marketplace, now a National Monument, a short drive from the guesthouse.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-card-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <span class="tag">Water &amp; Wildlife</span>
+        <h4>Bongolo Dam &amp; nature reserve</h4>
+        <p>Watersports, birdlife and hiking in the hills above town — a favourite half-day outing for guests.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-card-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <span class="tag">On The Road</span>
+        <h4>Gateway to the Stormberg</h4>
+        <p>Well placed on the N6 for trips into the Stormberg and Winterberg mountains, and the wider Eastern Cape highlands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ map ============ -->
+<section class="map-section" id="location">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Find Us
+      </div>
+      <h2>Getting here</h2>
+      <p>Currently centred on Komani generally — replace the map src with an embed of your exact address once you have the pin (Google Maps → Share → Embed a map).</p>
+    </div>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps?q=Queenstown+Komani+Eastern+Cape+South+Africa&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Komani, Eastern Cape"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ reviews ============ -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Guests Say
+      </div>
+      <h2>What people remember about staying here</h2>
+      <div class="proof-badge light">
+        <span class="stars">★★★★★</span>
+        <span><strong>[4.8]/5</strong> · [124] reviews across Facebook &amp; BnB Finder</span>
+      </div>
+    </div>
+    <div class="review-row">
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+      <div class="review-card reveal">
+        <span class="quote-mark">"</span>
+        <p>[Sample review text — replace with a real guest quote from Facebook or a directory listing.]</p>
+        <span class="who">— [Guest name], [Month/Year]</span>
+      </div>
+    </div>
+    <p class="reviews-note">⚠ These are placeholder quotes, not real reviews — replace all three with actual guest feedback copied from Facebook or BnB Finder before this site goes live. Don't publish invented quotes.</p>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="wrap">
+    <div>
+      <h3>Still deciding?</h3>
+      <p>Send a quick WhatsApp — we usually reply within the hour.</p>
+    </div>
+    <div class="btns">
+      <a href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27ve%20got%20a%20question%20about%20a%20stay." target="_blank" rel="noopener" class="btn btn-primary">WhatsApp Us</a>
+      <a href="#book" class="btn btn-ghost">Enquiry Form</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ book / contact ============ -->
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div class="book-panel reveal">
+      <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+      <div class="eyebrow" style="color:var(--gold-soft)">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        Get In Touch
+      </div>
+      <h3>Book your stay at Limase B&amp;B</h3>
+      <p>We take bookings by phone, WhatsApp, Facebook message or email — whichever's easiest for you.</p>
+      <ul class="contact-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><span class="label">Phone</span><a href="tel:+27000000000">[+27 00 000 0000]</a> · <a href="https://wa.me/27000000000" target="_blank" rel="noopener">WhatsApp</a></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span><span class="label">Email</span><a href="mailto:stay@limasebnb.co.za">[stay@limasebnb.co.za]</a></span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><span class="label">Address</span>[Street address, Queenstown / Komani, Eastern Cape]</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM12 18h.01"/></svg>
+          <span><span class="label">Find us</span>Facebook · BnB Finder directory listing</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="book-form reveal">
+      <div class="eyebrow"><svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg> Send an Enquiry</div>
+      <h3>Check dates &amp; availability</h3>
+      <p style="margin-bottom:22px;">Fill this in and we'll get back to you — or reach us directly by phone, WhatsApp or Facebook.</p>
+      <form class="enquire" onsubmit="return false;">
+        <div class="row2">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" type="text" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="contact">Phone or email</label>
+            <input id="contact" type="text" placeholder="How should we reach you?" required>
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="checkin">Check-in</label>
+            <input id="checkin" type="date">
+          </div>
+          <div>
+            <label for="checkout">Check-out</label>
+            <input id="checkout" type="date">
+          </div>
+        </div>
+        <div>
+          <label for="guests">Room preference</label>
+          <select id="guests">
+            <option>No preference</option>
+            <option>The Hangklip Room</option>
+            <option>The Bongolo Room</option>
+            <option>The Komani Suite</option>
+          </select>
+        </div>
+        <div>
+          <label for="msg">Message</label>
+          <textarea id="msg" placeholder="Number of guests, special requests, etc."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Enquiry</button>
+        <p class="form-note">This form is a template — connect it to email, WhatsApp or a booking service to make it live.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg class="hex-mark" viewBox="0 0 100 100"><use href="#hex-spokes"/></svg>
+        <div>
+          <strong>Limase B&amp;B</strong>
+          <div style="font-size:0.78rem;color:rgba(251,248,239,0.55);">Queenstown (Komani), Eastern Cape</div>
+        </div>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h5>Explore</h5>
+          <ul>
+            <li><a href="#about">Welcome</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#area">The Area</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Stay</h5>
+          <ul>
+            <li><a href="#book">Contact</a></li>
+            <li><a href="#reviews">Guest Reviews</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Find Us Online</h5>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Facebook Page ↗</a></li>
+            <li><a href="#" target="_blank" rel="noopener">BnB Finder Listing ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Limase B&amp;B, Queenstown (Komani), Eastern Cape. All rights reserved.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- floating WhatsApp button -->
+<a class="wa-float" href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
+
+<!-- mobile sticky booking bar -->
+<div class="sticky-book">
+  <a class="call" href="tel:+27000000000">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call
+  </a>
+  <a class="wa" href="https://wa.me/27000000000?text=Hi%20Limase%20B%26B%2C%20I%27d%20like%20to%20check%20availability." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile nav toggle
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // sticky header shrink on scroll (subtle)
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10 ? '0 8px 24px -12px rgba(0,0,0,0.4)' : 'none';
+  });
+
+  // reveal-on-scroll
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
