@@ -1435,7 +1435,7 @@
   // ---- Consultation booking widget ----
   // After deploying the Apps Script backend (see SETUP-GUIDE.md), paste the
   // Web app URL below. Until then, Check Availability will show a friendly error.
-  const CONSULT_BOOKING_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEg2Q6ZExkfpww2wrNQZ3QhZ_cyGFIo7avelhb0nR0n_K7pik9DDC6bt-ZmKqoKPYv/exec';
+  const CONSULT_BOOKING_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwt9mQHHayR4RhEDNdqNal5tE5ohCL3dRCnU8XQpOPeavlCSZ5NvNKqdgopNJFlxs8Q0A/exec';
 
   // Apps Script web app responses don't include the Access-Control-Allow-Origin
   // header that fetch() needs for cross-origin requests, so we use JSONP instead:
@@ -1508,7 +1508,7 @@
       return;
     }
 
-    if(CONSULT_BOOKING_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbxEg2Q6ZExkfpww2wrNQZ3QhZ_cyGFIo7avelhb0nR0n_K7pik9DDC6bt-ZmKqoKPYv/exec') === 0){
+    if(CONSULT_BOOKING_SCRIPT_URL.indexOf('PASTE_YOUR') === 0){
       bkShowSearchError('Booking system is not connected yet. See SETUP-GUIDE.md to deploy it, or use the contact form below in the meantime.');
       return;
     }
