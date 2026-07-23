@@ -1,173 +1,124 @@
 /**
- * BELL GUESTHOUSE — BOOKING BACKEND (Google Apps Script)
- * ---------------------------------------------------------------
- * WHAT THIS DOES
- * 1. Checks a Google Calendar for date clashes on a given room
- * 2. If free, creates a calendar event for the booking
- * 3. Emails the owner (Chris/Sophia) the full booking request
+ * AiMD Nexus — Free Consultation Booking Backend
+ * ------------------------------------------------
+ * Deploy this as a Google Apps Script Web App (see SETUP-GUIDE.md).
  *
- * SETUP (do this once):
- * 1. Go to https://script.google.com -> New Project
- * 2. Delete the default code, paste in this whole file
- * 3. Edit the CONFIGURATION block below with real values
- * 4. Click Deploy -> New deployment -> type: "Web app"
- *      - Execute as: Me
- *      - Who has access: Anyone
- * 5. Click Deploy, authorise the permissions Google asks for
- * 6. Copy the "Web app URL" it gives you — that's the SCRIPT_URL
- *    you paste into the booking-widget.html file
+ * Uses GET + JSONP instead of POST, because Apps Script web app
+ * responses don't include the Access-Control-Allow-Origin header
+ * that fetch()/POST needs for cross-origin requests. Loading the
+ * response via a <script> tag (JSONP) sidesteps that limitation.
  *
- * NOTE: every time you change this code you must create a NEW
- * deployment (or "Manage deployments" -> edit -> new version)
- * for the changes to go live.
+ * Handles two actions sent from the website's booking widget:
+ *   - checkAvailability  ?action=checkAvailability&date=...&time=...
+ *   - confirmBooking     ?action=confirmBooking&name=...&email=...&date=...&time=...&interest=...
+ *
+ * On confirmBooking, this creates a 30 minute event on the connected
+ * Google Calendar and emails OWNER_EMAIL with the enquiry details.
  */
 
-// ==================== CONFIGURATION ====================
-
-// The calendar to book into. Use 'primary' for the Google account's
-// main calendar, or a specific calendar ID (Calendar settings ->
-// "Integrate calendar" -> Calendar ID) if using a dedicated
-// "Bell Guesthouse Bookings" calendar (recommended).
-const CALENDAR_ID = 'primary';
-
-// Where the "New Booking Request" email gets sent
-const OWNER_EMAIL = 'christiaanjohanneswilken@gmail.com';
-
-// Room names — must match exactly what's in the booking form's
-// dropdown on the website
-const ROOMS = ['Room 1 — Double En-Suite', 'Room 2 — Twin En-Suite', 'Whole cottage'];
-const WHOLE_COTTAGE = 'Whole cottage';
-
-// =========================================================
-
-// A booking conflicts if: someone already booked the same room,
-// OR someone already booked "Whole cottage" (which blocks everything),
-// OR this new request IS "Whole cottage" and ANY room is already booked.
-function hasConflict(events, room) {
-  return events.some(function (ev) {
-    const title = ev.getTitle();
-    if (title.indexOf(room) !== -1) return true;
-    if (title.indexOf(WHOLE_COTTAGE) !== -1) return true;
-    if (room === WHOLE_COTTAGE) return true; // any existing booking blocks a whole-cottage request
-    return false;
-  });
-}
+// ============ CONFIGURE THESE ============
+const CALENDAR_ID = 'PASTE_YOUR_CALENDAR_ID_HERE'; // e.g. abc123xyz@group.calendar.google.com
+const OWNER_EMAIL = 'admin@aimdnexus.co.za';
+const MEETING_LENGTH_MINUTES = 30;
+// ===========================================
 
 function doGet(e) {
+  const params = (e && e.parameter) || {};
+  const callback = params.callback;
+  let result;
+
   try {
-    const action = e.parameter.action;
-    if (action === 'checkAvailability') {
-      return checkAvailability(e.parameter.checkin, e.parameter.checkout, e.parameter.room);
+    if (params.action === 'checkAvailability') {
+      result = checkAvailability(params);
+    } else if (params.action === 'confirmBooking') {
+      result = confirmBooking(params);
+    } else {
+      result = { success: false, error: 'Unknown action.' };
     }
-    return jsonResponse({ error: 'Unknown action' });
   } catch (err) {
-    return jsonResponse({ error: err.message });
+    result = { success: false, error: 'Server error: ' + err.message };
   }
+
+  return jsonpResponse(result, callback);
 }
 
-function doPost(e) {
-  try {
-    const data = JSON.parse(e.postData.contents);
-    if (data.action === 'createBooking') {
-      return createBooking(data);
-    }
-    if (data.action === 'sendEnquiry') {
-      return sendEnquiry(data);
-    }
-    return jsonResponse({ error: 'Unknown action' });
-  } catch (err) {
-    return jsonResponse({ error: err.message });
+function checkAvailability(data) {
+  const { date, time } = data;
+  if (!date || !time) {
+    return { available: false, error: 'Missing date or time.' };
   }
-}
 
-function checkAvailability(checkin, checkout, room) {
+  const start = new Date(`${date}T${time}:00`);
+  const end = new Date(start.getTime() + MEETING_LENGTH_MINUTES * 60000);
+
   const calendar = CalendarApp.getCalendarById(CALENDAR_ID);
-  const start = new Date(checkin + 'T00:00:00');
-  const end = new Date(checkout + 'T00:00:00');
+  if (!calendar) {
+    return { available: false, error: 'Calendar not found. Check CALENDAR_ID.' };
+  }
 
-  const events = calendar.getEvents(start, end);
-  const conflict = hasConflict(events, room);
-
-  return jsonResponse({ available: !conflict });
+  const existingEvents = calendar.getEvents(start, end);
+  return { available: existingEvents.length === 0 };
 }
 
-function createBooking(data) {
+function confirmBooking(data) {
+  const { name, email, date, time, interest } = data;
+  if (!name || !email || !date || !time) {
+    return { success: false, error: 'Missing required details.' };
+  }
+
+  const start = new Date(`${date}T${time}:00`);
+  const end = new Date(start.getTime() + MEETING_LENGTH_MINUTES * 60000);
+
   const calendar = CalendarApp.getCalendarById(CALENDAR_ID);
-  const start = new Date(data.checkin + 'T14:00:00'); // default 2pm check-in
-  const end = new Date(data.checkout + 'T10:00:00');  // default 10am check-out
-
-  // Double-check availability again server-side before booking
-  // (in case someone else booked between the check and the confirm)
-  const events = calendar.getEvents(start, end);
-  const conflict = hasConflict(events, data.room);
-  if (conflict) {
-    return jsonResponse({ success: false, error: 'This room was just booked by someone else. Please choose different dates.' });
+  if (!calendar) {
+    return { success: false, error: 'Calendar not found. Check CALENDAR_ID.' };
   }
 
-  const title = data.room + ' — ' + data.name;
-  const description = [
-    'Guest: ' + data.name,
-    'Email: ' + data.email,
-    'Phone: ' + data.phone,
-    'Guests: ' + data.guests,
-    'Special Requests: ' + (data.specialRequests || 'None')
-  ].join('\n');
-
-  calendar.createEvent(title, start, end, { description: description });
-
-  const tz = Session.getScriptTimeZone();
-  const checkinStr = Utilities.formatDate(start, tz, 'd MMMM');
-  const checkoutStr = Utilities.formatDate(end, tz, 'd MMMM');
-
-  const subject = 'New Booking Request — ' + data.room;
-  const body = [
-    'New Booking Request',
-    '',
-    'Guest: ' + data.name,
-    'Room: ' + data.room,
-    'Dates: ' + checkinStr + ' to ' + checkoutStr,
-    'Guests: ' + data.guests,
-    'Phone: ' + data.phone,
-    'Email: ' + data.email,
-    'Special Requests: ' + (data.specialRequests || 'None'),
-    '',
-    'This booking has been added to the Bell Guesthouse Google Calendar.'
-  ].join('\n');
-
-  MailApp.sendEmail(OWNER_EMAIL, subject, body);
-
-  return jsonResponse({ success: true });
-}
-
-function sendEnquiry(data) {
-  if (!data.name || !data.email || !data.message) {
-    return jsonResponse({ success: false, error: 'Missing required fields.' });
+  // Re-check right before booking to avoid double-booking race conditions
+  const existingEvents = calendar.getEvents(start, end);
+  if (existingEvents.length > 0) {
+    return { success: false, error: 'That slot was just taken. Please pick another time.' };
   }
 
-  const subject = 'General Enquiry — Bell Guesthouse Website';
-  const body = [
-    'New general enquiry from the website (no dates attached):',
-    '',
-    'Name: ' + data.name,
-    'Email: ' + data.email,
-    'Phone: ' + (data.phone || 'Not provided'),
-    '',
-    'Message:',
-    data.message
-  ].join('\n');
+  calendar.createEvent(
+    `Consultation — ${name}`,
+    start,
+    end,
+    {
+      description:
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Interested in: ${interest || 'Not specified'}\n\n` +
+        `Booked via the AiMD Nexus website consultation widget.`,
+      guests: email,
+      sendInvites: true
+    }
+  );
 
   MailApp.sendEmail({
     to: OWNER_EMAIL,
-    subject: subject,
-    body: body,
-    replyTo: data.email // so the owner can hit "reply" and it goes straight to the guest
+    subject: `New consultation request — ${name}`,
+    body:
+      `You have a new consultation request:\n\n` +
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Date: ${date}\n` +
+      `Time: ${time} SAST\n` +
+      `Interested in: ${interest || 'Not specified'}\n\n` +
+      `A calendar event has been created and the requester has been added as a guest.`
   });
 
-  return jsonResponse({ success: true });
+  return { success: true };
 }
 
-function jsonResponse(obj) {
+function jsonpResponse(obj, callback) {
+  const json = JSON.stringify(obj);
+  if (callback) {
+    return ContentService
+      .createTextOutput(callback + '(' + json + ');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
   return ContentService
-    .createTextOutput(JSON.stringify(obj))
+    .createTextOutput(json)
     .setMimeType(ContentService.MimeType.JSON);
 }

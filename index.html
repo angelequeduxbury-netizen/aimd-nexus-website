@@ -1437,6 +1437,43 @@
   // Web app URL below. Until then, Check Availability will show a friendly error.
   const CONSULT_BOOKING_SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
 
+  // Apps Script web app responses don't include the Access-Control-Allow-Origin
+  // header that fetch() needs for cross-origin requests, so we use JSONP instead:
+  // load the response via a <script> tag, which isn't subject to CORS.
+  function jsonpRequest(baseUrl, params) {
+    return new Promise((resolve, reject) => {
+      const callbackName = 'bkCallback_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+      const query = Object.keys(params)
+        .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k] == null ? '' : params[k]))
+        .join('&');
+
+      const script = document.createElement('script');
+      const timeoutId = setTimeout(() => {
+        cleanup();
+        reject(new Error('The booking service took too long to respond. Please try again.'));
+      }, 15000);
+
+      function cleanup() {
+        clearTimeout(timeoutId);
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callbackName] = function (data) {
+        cleanup();
+        resolve(data);
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error('Could not reach the booking service. Please try again.'));
+      };
+
+      script.src = baseUrl + '?' + query + '&callback=' + callbackName;
+      document.body.appendChild(script);
+    });
+  }
+
   const bkSearchStep = document.getElementById('bk-step-search');
   const bkResultStep = document.getElementById('bk-step-result');
   const bkSearchError = document.getElementById('bk-search-error');
@@ -1471,7 +1508,7 @@
       return;
     }
 
-    if(CONSULT_BOOKING_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbzDCWtiXE6sgFceGbgGKXVMZgB8mJtodSTjM6FJHlpgTWNLoDBl-Z6D3e19CDDHhzJO/exec') === 0){
+    if(CONSULT_BOOKING_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbxEg2Q6ZExkfpww2wrNQZ3QhZ_cyGFIo7avelhb0nR0n_K7pik9DDC6bt-ZmKqoKPYv/exec') === 0){
       bkShowSearchError('Booking system is not connected yet. See SETUP-GUIDE.md to deploy it, or use the contact form below in the meantime.');
       return;
     }
@@ -1480,11 +1517,7 @@
     bkCheckBtn.textContent = 'Checking...';
 
     try{
-      const res = await fetch(CONSULT_BOOKING_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action:'checkAvailability', date, time })
-      });
-      const data = await res.json();
+      const data = await jsonpRequest(CONSULT_BOOKING_SCRIPT_URL, { action:'checkAvailability', date, time });
       bkCheckBtn.disabled = false;
       bkCheckBtn.textContent = 'Check Availability';
 
@@ -1539,11 +1572,7 @@
     confirmBtn.textContent = 'Confirming...';
 
     try{
-      const res = await fetch(CONSULT_BOOKING_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action:'confirmBooking', name, email, date, time, interest })
-      });
-      const data = await res.json();
+      const data = await jsonpRequest(CONSULT_BOOKING_SCRIPT_URL, { action:'confirmBooking', name, email, date, time, interest });
 
       if(data.success){
         bkResultStep.innerHTML = `
